@@ -40,7 +40,7 @@ def route(app, *args, **kwargs):
 
 
 def app_setting():
-    """Get app setting."""
+    """Get app settings."""
     return os.environ.get(
         'INTELLI_EXTRACT_SENTENCE_PROFILE', 'dev')
 
