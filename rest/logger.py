@@ -5,7 +5,7 @@ Author :       peng.he
 -------------------------------------------------
 """
 import logging.config
-from sentence import settings
+from rest import settings
 
 LOG_PATH = settings.LOG_PATH
 

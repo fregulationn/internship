@@ -1,7 +1,7 @@
-tensor2tensor== 1.5.7      
-tensorboard==1.7.0      
-tensorflow-gpu==1.5.0      
-tensorflow-tensorboard==1.5.1 
+tensor2tensor== 1.5.7
+tensorboard==1.7.0
+tensorflow-gpu==1.5.0
+tensorflow-tensorboard==1.5.1
 gensim==3.4.0
 numpy==1.12.1
 pandas==0.20.3

@@ -5,8 +5,8 @@ Author :       peng.he
 -------------------------------------------------
 """
 from werkzeug.serving import run_simple
-from sentence import api
-from sentence import settings
+from rest import api
+from rest import settings
 
 
 def get_app():
@@ -16,6 +16,7 @@ def get_app():
 
 
 application = get_app()
+print("d")
 
 
 def main():
@@ -26,3 +27,4 @@ def main():
         application,
         use_reloader=False,
         use_debugger=False)
+main()

@@ -10,8 +10,8 @@ import importlib
 from flask import Blueprint
 from flask import Flask, jsonify, Response
 from functools import wraps
-from sentence.logger import init_logger
-from sentence.middleware.req_logger import RequestLogger
+from rest.logger import init_logger
+from rest.middleware.req_logger import RequestLogger
 
 
 def route(app, *args, **kwargs):
@@ -76,6 +76,9 @@ def create_app():
 
     # init request logger
     RequestLogger(app)
+
+    print(__name__)
+    print(__path__)
 
     # register bp
     register_blueprints(app, __name__, __path__)
