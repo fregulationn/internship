@@ -3,7 +3,7 @@
 -------------------------------------------------
    File Name：     sentence_api.py
    Description :
-   Author :       peng.he
+   Author :       junjie.zhang
    date：          2018/6/25
 -------------------------------------------------
    Change Activity:
@@ -20,6 +20,7 @@ from rest.api import route
 from rest import settings
 from rest.preprocessing import split_text, NGRAM
 from rest.preprocessing.get_raw_data import is_sentence, del_para_location
+from rest.model import face_merge
 
 bp = Blueprint('rest', __name__, url_prefix='/rest')
 logger = logging.getLogger('file')
@@ -107,6 +108,48 @@ def recognize_sentence():
                      exc_info=True)
         return None, 500
 
+@route(bp, '/face_fusion', methods=['POST'])
+def face_fusion():
+    '''
+    query:{
+        'user_Id': string,
+        'inputImage':
+    }
+    :return:
+    {
+        'predict':[], predict label names
+    }
+    '''
+    if not request.is_json:
+        logger.error('Request not contains any json data.')
+        return {'error': 'Request not contains any json data.'}, 405
+    texts = request.get_json()['texts']
+    try:
+        # if not _model and not _le and not _c_v:
+        #     print('models file are incomplete, check you installation!')
+        #     return None, 500
+        # X = split_text(texts=texts, ngram=NGRAM)
+        # X = _c_v.transform(X)
+        # pred = _model.predict(X)
+        result = {}
+        # result['predict'] = [_le.inverse_transform(p) for p in pred]
+        logger.info('SENTENCE PREDICT:request:{},predict:{}'.format(request.json, result))
+        
+        face_merge(src_img='images/model.jpg',
+                    dst_img='images/20171030175254.jpg',
+                    out_img='images/output.jpg',
+                    face_area=[50, 30, 500, 485],
+                    alpha=0.75,
+                    k_size=(15, 10),
+                    mat_multiple=0.95)
+
+        return result, 200
+    except Exception as e:
+        logger.error('SENTENCE ERROR:recognize_sentence request:{}, error:{}'.format(request.json, e),
+                     exc_info=True)
+        return None, 500
+
+
 
 # def _recognize_line(line):
 #     if is_sentence(line):
@@ -182,6 +225,6 @@ def hello():
 
 if __name__ == '__main__':
 
-    temp_dir = r'C:\Users\peng.he\Desktop\tmp'
-    file = r'C:\Users\peng.he\Desktop\吉祥人生全年综合保障计划-主条款2.txt'
+    temp_dir = r'C:\Users\junjie.zhang\Desktop\tmp'
+    file = r'C:\Users\junjie.zhang\Desktop\吉祥人生全年综合保障计划-主条款2.txt'
     # print(_recognize_file(temp_dir, file))

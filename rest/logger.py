@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 File Name：     logger
-Author :       peng.he
+Author :       junjie.zhang
 -------------------------------------------------
 """
 import logging.config

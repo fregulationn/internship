@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 File Name：     _get_data
-Author :       peng.he
+Author :       junjie.zhang
 -------------------------------------------------
 """
 import os

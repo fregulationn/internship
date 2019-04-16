@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 File Name：     __init__.py
-Author :       peng.he
+Author :       junjie.zhang
 -------------------------------------------------
 """
 import os
@@ -42,7 +42,7 @@ def route(app, *args, **kwargs):
 def app_setting():
     """Get app settings."""
     return os.environ.get(
-        'INTELLI_EXTRACT_SENTENCE_PROFILE', 'dev')
+        'FACE_FUSION', 'dev')
 
 
 def app_config(app):

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 File Name：     dev
-Author :       peng.he
+Author :       junjie.zhang
 -------------------------------------------------
 """
 import os
@@ -9,7 +9,6 @@ import os
 from rest.settings import ModelType
 
 MODEL_TYPE = ModelType.LR
-# DOMAIN_NAME = 'ie-sentence.msxf.lo'
 
 DOMAIN_NAME = 'rest.python.lo'
 IP = '0.0.0.0'

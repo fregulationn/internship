@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 File Name：     logistic_regression
-Author :       peng.he
+Author :       junjie.zhang
 -------------------------------------------------
 """
 from time import time

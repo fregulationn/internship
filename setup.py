@@ -14,18 +14,18 @@ def get_requirements():
 
 
 setup(
-    name='intelli_extract_sentence',
+    name='face_fusion',
     version=__version__,
-    author='peng.he',
-    author_email='peng.he@msxf.com',
-    url='http://gitlab.msxf.com/peng.he/intelli-extract-sentence.git',
-    description='智能保顾句子识别库',
+    author='junjie.zhang',
+    author_email='iszhangjunjie@outlook.com',
+    url='https://github.com/fregulationn/python-REST.git',
+    description='人脸相关rest服务接口',
     packages=find_packages(),
     include_package_data=True,
     install_requires=get_requirements(),
     entry_points={
         'console_scripts': [
-            'ie-sentence = sentence.start_app:main'
+            'rest_face = rest.start_app:main'
         ],
     }
 )

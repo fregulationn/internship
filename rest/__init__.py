@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 File Name：     __init__.py
-Author :       peng.he
+Author :       junjie.zhang
 -------------------------------------------------
 """
 import importlib
@@ -9,7 +9,7 @@ import os
 
 
 def load_settings():
-    t = os.environ.get('INTELLI_EXTRACT_SENTENCE_PROFILE', 'dev')
+    t = os.environ.get('FACE_FUSION', 'dev')
     module = 'rest.settings.{}'.format(t)
     if module != 'rest.settings.online':
         print('==============================')
