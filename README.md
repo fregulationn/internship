@@ -107,19 +107,17 @@
 
 
 数据库表
-  1. user
-     openId
+  1.id
+    openId
 
-  2. log
-     openId
-     history_Id
-     time
-     outputImage ：
-     type: 'fusion'
+  2.log
+    userOpenId
+    time
+    outputImagePath
+    type: 'fusion'
 
-  3. image 
-     feature 
+
+  3.id
+    image
+    feature
   
-
-图片上传 返回图片地址
-图片下载 通过图片在服务器地址返回图片
