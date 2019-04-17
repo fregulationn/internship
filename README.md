@@ -37,11 +37,10 @@
     返回值：
     {
           user_Id:'123',
-    history_id:'1'
+          history_id:'1',
           type:'detect',
           time:'******',
           outputImage:
-
     }
 
  
@@ -58,7 +57,7 @@
     返回值：
     {
       user_Id:'123',
-      history_id:'1'
+      history_id:'1',
       type:'recognize',
       time:'******',
       outputImage:
@@ -71,7 +70,7 @@
     body：   
     {
       user_Id:'123',
-      history_id:'1'
+      history_id:'1',
       type:'fusion/detect/recognize',
       time:'******',
       outputImage:
@@ -107,17 +106,19 @@
 
 
 数据库表
-  1.id
-    openId
+  1.User
+    id
+    user_id
 
-  2.log
-    userOpenId
+  2.Log
+    id
+    user_Id
     time
-    outputImagePath
-    type: 'fusion'
+    output_image_path
+    type: 'fusion','detect','recognize'
 
-
-  3.id
-    image
+  3.Image
+    id
+    image_path
     feature
   

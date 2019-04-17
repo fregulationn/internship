@@ -12,7 +12,7 @@
 """
 import os
 import re
-import joblib
+# import joblib
 import logging
 from flask import request
 from flask import Blueprint
@@ -21,6 +21,7 @@ from rest import settings
 from rest.preprocessing import split_text, NGRAM
 from rest.preprocessing.get_raw_data import is_sentence, del_para_location
 from rest.model import face_merge
+from rest.model.compare import session
 
 bp = Blueprint('rest', __name__, url_prefix='/rest')
 logger = logging.getLogger('file')
@@ -30,33 +31,44 @@ if settings.MODEL_TYPE is None:
 
 _model_type = settings.MODEL_TYPE
 
-#
-# def _load_model():
-#     model_path = settings.MODEL
-#     labels_path = settings.LABELS
-#     if _model_type == settings.ModelType.LR:
-#         cv_path = settings.COUNT_VECTOR
-#         if os.path.isfile(model_path) and \
-#                 os.path.isfile(labels_path) and \
-#                 os.path.isfile(cv_path):
-#             print('model files exist, load model from files')
-#             model = joblib.load(model_path)
-#             labels = joblib.load(labels_path)
-#             c_v = joblib.load(cv_path)
-#             return model, labels, c_v
-#         else:
-#             print('model files are incomplete!')
-#             X, y, le, c_v = _get_data()
-#             if X is None:
-#                 return None, None, None
-#             else:
-#                 print('start train lr model...')
-#                 from sentence.model.logistic_regression import train
-#                 model = train(X, y)
-#                 joblib.dump(model, model_path)
-#                 return model, le, c_v
-#
-#
+
+def _load_model():
+
+    with tf.Graph().as_default():
+        gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=args.gpu_memory_fraction)
+        sess = tf.Session(config=tf.ConfigProto(gpu_options=gpu_options, log_device_placement=False))
+        with sess.as_default():
+            pnet, rnet, onet = align.detect_face.create_mtcnn(sess, None)
+        
+        model = settings.FACENET_MODEL
+        sess_facenet = session(model)
+        
+        return pnet,rnet,onet,sess_facenet
+
+    # model_path = settings.MODEL
+    # labels_path = settings.LABELS
+    # if _model_type == settings.ModelType.LR:
+    #     cv_path = settings.COUNT_VECTOR
+    #     if os.path.isfile(model_path) and \
+    #             os.path.isfile(labels_path) and \
+    #             os.path.isfile(cv_path):
+    #         print('model files exist, load model from files')
+    #         model = joblib.load(model_path)
+    #         labels = joblib.load(labels_path)
+    #         c_v = joblib.load(cv_path)
+    #         return model, labels, c_v
+    #     else:
+    #         print('model files are incomplete!')
+    #         X, y, le, c_v = _get_data()
+    #         if X is None:
+    #             return None, None, None
+    #         else:
+    #             print('start train lr model...')
+    #             from sentence.model.logistic_regression import train
+    #             model = train(X, y)
+    #             joblib.dump(model, model_path)
+    #             return model, le, c_v
+
 # def _get_data():
 #     data_path = settings.RAW_DATA
 #     if os.path.isfile(data_path):
@@ -67,14 +79,12 @@ _model_type = settings.MODEL_TYPE
 #     else:
 #         print('raw data file={} was not found, can not train model!'.format(data_path))
 #         return None, None, None, None,
-#
-#
 # def _save_data(le, c_v):
 #     joblib.dump(le, settings.LABELS)
 #     joblib.dump(c_v, settings.COUNT_VECTOR)
-#
-#
-# _model, _le, _c_v = _load_model()
+
+
+pnet, rnet, onet, sess_facenet = _load_model()
 
 
 @route(bp, '/predict', methods=['POST'])
@@ -149,7 +159,37 @@ def face_fusion():
                      exc_info=True)
         return None, 500
 
-
+@route(bp, '/detect', methods=['POST'])
+def detect():
+    '''
+    query:{
+        'user_Id': string, wechatId
+        'inputImage':[], imagePath 
+    }
+    :return:
+    {
+        'predict':[], predict label names
+    }
+    '''
+    if not request.is_json:
+        logger.error('Request not contains any json data.')
+        return {'error': 'Request not contains any json data.'}, 405
+    texts = request.get_json()['texts']
+    try:
+        # if not _model and not _le and not _c_v:
+        #     print('models file are incomplete, check you installation!')
+        #     return None, 500
+        # X = split_text(texts=texts, ngram=NGRAM)
+        # X = _c_v.transform(X)
+        # pred = _model.predict(X)
+        result = {}
+        # result['predict'] = [_le.inverse_transform(p) for p in pred]
+        logger.info('SENTENCE PREDICT:request:{},predict:{}'.format(request.json, result))
+        return result, 200
+    except Exception as e:
+        logger.error('SENTENCE ERROR:recognize_sentence request:{}, error:{}'.format(request.json, e),
+                     exc_info=True)
+        return None, 500
 
 # def _recognize_line(line):
 #     if is_sentence(line):
