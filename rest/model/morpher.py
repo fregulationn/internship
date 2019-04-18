@@ -7,7 +7,7 @@ import numpy as np
 import time
 import os
 
-import core
+import model as core
 
 
 def transformation_points(src_img, src_points, dst_img, dst_points):

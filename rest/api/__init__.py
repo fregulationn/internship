@@ -12,6 +12,7 @@ from flask import Flask, jsonify, Response
 from functools import wraps
 from rest.logger import init_logger
 from rest.middleware.req_logger import RequestLogger
+from rest.api.db import db
 
 
 def route(app, *args, **kwargs):
@@ -49,6 +50,9 @@ def app_config(app):
     """Get app config."""
     testing = app_setting() == 'ci'
     app.config.update(dict(TESTING=testing))
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.abspath(os.getcwd())+ os.pathsep+"database.db"
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+
 
 
 def register_blueprints(app, package_name, package_path):
@@ -76,6 +80,11 @@ def create_app():
 
     # init request logger
     RequestLogger(app)
+
+    # init database
+    with app.app_context(): # 添加这一句，否则会报数据库找不到application和context错误
+        db.init_app(app) # 初始化db
+        db.create_all() # 创建所有未创建的table
 
     print(__name__)
     print(__path__)

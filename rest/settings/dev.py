@@ -23,4 +23,12 @@ PORT = 9420
 # LABELS = os.path.join(DATA_DIR, 'labels.joblib')
 # MODEL = os.path.join(DATA_DIR, 'lr_model.joblib')
 
-LOG_PATH = '../Logs/{}/{}-{}.log'.format(DOMAIN_NAME, DOMAIN_NAME, PORT)
+LOG_PATH = './Logs/{}/{}-{}.log'.format(DOMAIN_NAME, DOMAIN_NAME, PORT)
+
+#Detect
+MINIMIZE = 20  # minimum size of face
+DETECT_THRESHOLD = [0.6, 0.7, 0.7]  # three steps's threshold
+FACTOR = 0.709  # scale factor
+MARGIN = 4 #Margin for the crop around the bounding box (height, width) in pixels.
+IMAGE_SIZE = 160 #Image size (height, width) in pixels.
+FACENET_MODEL = "facenet/data/20180408-102900" #Could be either a directory containing the meta_file and ckpt_file or a model protobuf (.pb) file

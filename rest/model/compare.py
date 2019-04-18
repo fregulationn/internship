@@ -13,74 +13,78 @@ import argparse
 import datetime
 import re
 from tensorflow.python.platform import gfile
+from rest.api.data import Image
 
 
 # os.environ["CUDA_VISIBLE_DEVICES"]="1"
 
-def main(args):
+def compare(sess_facenet, image):
     starttime = datetime.datetime.now()
-    image_paths =  [None] * 2
-    image_paths[0] = args.img1
-    image_paths[1] = args.img2
 
-    nrof_samples = len(image_paths)
+
+    nrof_samples = 1
     img_list = [None] * nrof_samples
     for i in range(nrof_samples):
-        image = misc.imread(os.path.expanduser(image_paths[i]), mode='RGB')
-
         prewhitened = prewhiten(image)
-
-        # temp = []
-        # for e in range(160):
-        #     for j in range(160):
-        #         for w in range(3):
-        #             temp.append(prewhitened[e][j][w])
-
-
-
         img_list[i] = prewhitened
+
     images = np.stack(img_list)
 
-    model = args.model
-    sess = session(model)
 
     # Get input and output tensors
     images_placeholder = tf.get_default_graph().get_tensor_by_name("input:0")
     embeddings = tf.get_default_graph().get_tensor_by_name("embeddings:0")
     phase_train_placeholder = tf.get_default_graph().get_tensor_by_name("phase_train:0")
 
-    print(images_placeholder)
-    print(embeddings)
-    print(phase_train_placeholder)
+    # print(images_placeholder)
+    # print(embeddings)
+    # print(phase_train_placeholder)
 
     # Run forward pass to calculate embeddings
     print(images)
     feed_dict = {images_placeholder: images, phase_train_placeholder: False}
     emb = sess.run(embeddings, feed_dict=feed_dict)
 
-    print('Images:')
-    for i in range(nrof_samples):
-        image_name =  os.path.basename(image_paths[i])
-        print('%1d: %s' % (i, image_name))
-    print('')
+    # print('Images:')
+    # for i in range(nrof_samples):
+    #     image_name =  os.path.basename(image_paths[i])
+    #     print('%1d: %s' % (i, image_name))
+    # print('')
 
     # Print distance matrix
-    print('Distance matrix')
-    print('    ', end='')
-    for i in range(nrof_samples):
-        print('    %1d     ' % i, end='')
-    print('')
-    for i in range(nrof_samples):
-        print('%1d  ' % i, end='')
-        for j in range(nrof_samples):
-            dist = np.sqrt(np.sum(np.square(np.subtract(emb[i,:], emb[j, :]))))
-            print('  %1.4f  ' % dist, end='')
-        print('')
+    res_feature = emb[0,:]
 
+    images = Image.query.all()
+    min_dist = 10000
+    min_pic = " "
+    for image in images:
+        dist = np.sqrt(np.sum(np.square(np.subtract(res_feature,Image.loads(Image,image.tmp_feature)))))
+        if dist < min_dist:
+            min_dist = dist
+            min_pic = image.name
+    
+    
+
+    
+    # print('Distance matrix')
+
+    # print('    ', end='')
+    # for i in range(nrof_samples):
+    #     print('    %1d     ' % i, end='')
+    # print('')
+    # for i in range(nrof_samples):
+    #     print('%1d  ' % i, end='')
+    #     for j in range(nrof_samples):
+    #         dist = np.sqrt(np.sum(np.square(np.subtract(emb[i,:], emb[j, :]))))
+    #         print('  %1.4f  ' % dist, end='')
+    #     print('')
 
 
     endtime = datetime.datetime.now()
     print(endtime - starttime)
+
+    return image.name
+
 
 
 def session(model):
@@ -99,20 +103,20 @@ def session(model):
 
 
 
-def parse_arguments(argv):
-    parser = argparse.ArgumentParser()
-    model_path = r"D:\Z\code\video_detect\model\20170512-110547"
-    # model_path = r"~/python/face/model"
+# def parse_arguments(argv):
+#     parser = argparse.ArgumentParser()
+#     model_path = r"D:\Z\code\video_detect\model\20170512-110547"
+#     # model_path = r"~/python/face/model"
 
-    parser.add_argument('img1', type=str, help='Image1input to compare')
-    parser.add_argument('img2', type=str, help='Image2 input to compare')
+#     parser.add_argument('img1', type=str, help='Image1input to compare')
+#     parser.add_argument('img2', type=str, help='Image2 input to compare')
 
-    parser.add_argument('-m', '--model', type=str,
-    help = 'Could be either a directory containing the meta_file and ckpt_file or a model protobuf (.pb) file', default = model_path)
-    parser.add_argument('--gpu_memory_fraction', type=float,
-                        help='Upper bound on the amount of GPU memory that will be used by the process.', default=0.8)
+#     parser.add_argument('-m', '--model', type=str,
+#     help = 'Could be either a directory containing the meta_file and ckpt_file or a model protobuf (.pb) file', default = model_path)
+#     parser.add_argument('--gpu_memory_fraction', type=float,
+#                         help='Upper bound on the amount of GPU memory that will be used by the process.', default=0.8)
 
-    return parser.parse_args(argv)
+#     return parser.parse_args(argv)
 
 
 def load_model(model,sess):
@@ -163,5 +167,5 @@ def prewhiten(x):
 
 
 
-if __name__ == '__main__':
-    main(parse_arguments(sys.argv[1:]))
+# if __name__ == '__main__':
+#     main(parse_arguments(sys.argv[1:]))
