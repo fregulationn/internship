@@ -75,6 +75,8 @@ def create_app():
     # initialize app
     app = Flask(__name__)
 
+    print("init app")
+
     # config app
     app_config(app)
 
@@ -86,6 +88,7 @@ def create_app():
         db.init_app(app) # 初始化db
         db.create_all() # 创建所有未创建的table
 
+    print("init database")
     print(__name__)
     print(__path__)
 

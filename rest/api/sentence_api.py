@@ -27,7 +27,7 @@ from rest import settings
 from rest.model import face_merge
 from rest.model.compare import session
 from rest.model.detect import detect_api
-from rest.model.compare import compare
+from rest.model.compare import compare , embbeding
 
 from rest.api.data import User,Log,Image
 from rest.api.db import db
@@ -83,8 +83,26 @@ def _load_model():
     #             return model, le, c_v
 
 
-
 pnet, rnet, onet, sess_facenet = _load_model()
+
+def load_model_image(model_image_path):
+    files = os.listdir(model_image_path)
+    for file in files:
+        image = Image.query.filter(Image.imagepath == file).first()
+        if image is not None:
+            continue
+        else:
+            file_path = os.path.join(model_image_path,file)
+            face_list, _ ,_ = detect_api(pnet, rnet, onet, file_path)
+            if len(face_list > 1):
+                logger.error('ERROR:load image more than one face:{}'.format(file), exc_info=True)
+                
+            res_feature = embbeding(sess_facenet, face_list[0])
+            db.session.add(Image(imagepath = file , feature = Image.dumps(Image,res_feature)))
+            db.session.commit()
+            logger.info('LOAD_MODEL_IMAGE:image_name:{}'.format(file))
+        
+print("waiting call")
 
 @route(bp, 'checkUser' , methods = ['Post'])
 def checkUser():

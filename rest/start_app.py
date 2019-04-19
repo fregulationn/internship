@@ -16,7 +16,7 @@ def get_app():
 
 
 application = get_app()
-print("d")
+
 
 
 def main():

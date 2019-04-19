@@ -85,6 +85,33 @@ def compare(sess_facenet, image):
 
     return image.name
 
+def embbeding(sess,image):
+    starttime = datetime.datetime.now()
+
+    nrof_samples = 1
+    img_list = [None] * nrof_samples
+    for i in range(nrof_samples):
+        prewhitened = prewhiten(image)
+        img_list[i] = prewhitened
+
+    images = np.stack(img_list)
+
+
+    # Get input and output tensors
+    images_placeholder = tf.get_default_graph().get_tensor_by_name("input:0")
+    embeddings = tf.get_default_graph().get_tensor_by_name("embeddings:0")
+    phase_train_placeholder = tf.get_default_graph().get_tensor_by_name("phase_train:0")
+
+
+    # Run forward pass to calculate embeddings
+    print(images)
+    feed_dict = {images_placeholder: images, phase_train_placeholder: False}
+    emb = sess.run(embeddings, feed_dict=feed_dict)
+
+    # Print distance matrix
+    res_feature = emb[0,:]
+    return res_feature
+
 
 
 def session(model):
