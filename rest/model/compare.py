@@ -12,13 +12,15 @@ import os
 import argparse
 import datetime
 import re
+import align
 from tensorflow.python.platform import gfile
 from rest.api.data import Image
+from rest import settings
 
 
 # os.environ["CUDA_VISIBLE_DEVICES"]="1"
 
-def compare(sess_facenet, image):
+def compare(sess, image):
     starttime = datetime.datetime.now()
 
 
@@ -30,38 +32,39 @@ def compare(sess_facenet, image):
 
     images = np.stack(img_list)
 
+    with sess.as_default():
+        with sess.graph.as_default():  # 2
+            # Get input and output tensors
+            images_placeholder = tf.get_default_graph().get_tensor_by_name("input:0")
+            embeddings = tf.get_default_graph().get_tensor_by_name("embeddings:0")
+            phase_train_placeholder = tf.get_default_graph().get_tensor_by_name("phase_train:0")
 
-    # Get input and output tensors
-    images_placeholder = tf.get_default_graph().get_tensor_by_name("input:0")
-    embeddings = tf.get_default_graph().get_tensor_by_name("embeddings:0")
-    phase_train_placeholder = tf.get_default_graph().get_tensor_by_name("phase_train:0")
+            # print(images_placeholder)
+            # print(embeddings)
+            # print(phase_train_placeholder)
 
-    # print(images_placeholder)
-    # print(embeddings)
-    # print(phase_train_placeholder)
+            # Run forward pass to calculate embeddings
+            print(images)
+            feed_dict = {images_placeholder: images, phase_train_placeholder: False}
+            emb = sess.run(embeddings, feed_dict=feed_dict)
 
-    # Run forward pass to calculate embeddings
-    print(images)
-    feed_dict = {images_placeholder: images, phase_train_placeholder: False}
-    emb = sess.run(embeddings, feed_dict=feed_dict)
+            # print('Images:')
+            # for i in range(nrof_samples):
+            #     image_name =  os.path.basename(image_paths[i])
+            #     print('%1d: %s' % (i, image_name))
+            # print('')
 
-    # print('Images:')
-    # for i in range(nrof_samples):
-    #     image_name =  os.path.basename(image_paths[i])
-    #     print('%1d: %s' % (i, image_name))
-    # print('')
+            # Print distance matrix
+            res_feature = emb[0,:]
 
-    # Print distance matrix
-    res_feature = emb[0,:]
-
-    images = Image.query.all()
-    min_dist = 10000
-    min_pic = " "
-    for image in images:
-        dist = np.sqrt(np.sum(np.square(np.subtract(res_feature,Image.loads(Image,image.tmp_feature)))))
-        if dist < min_dist:
-            min_dist = dist
-            min_pic = image.name
+            images = Image.query.all()
+            min_dist = 10000
+            min_pic = " "
+            for image in images:
+                dist = np.sqrt(np.sum(np.square(np.subtract(res_feature,Image.loads(Image,image.feature)))))
+                if dist < min_dist:
+                    min_dist = dist
+                    min_pic = image.imagepath
     
     
 
@@ -83,7 +86,7 @@ def compare(sess_facenet, image):
     endtime = datetime.datetime.now()
     print(endtime - starttime)
 
-    return image.name
+    return image.imagepath
 
 def embbeding(sess,image):
     starttime = datetime.datetime.now()
@@ -96,37 +99,44 @@ def embbeding(sess,image):
 
     images = np.stack(img_list)
 
+    with sess.as_default():
+        with sess.graph.as_default():  # 2
+            # Get input and output tensors
+            images_placeholder = tf.get_default_graph().get_tensor_by_name("input:0")
+            embeddings = tf.get_default_graph().get_tensor_by_name("embeddings:0")
+            phase_train_placeholder = tf.get_default_graph().get_tensor_by_name("phase_train:0")
 
-    # Get input and output tensors
-    images_placeholder = tf.get_default_graph().get_tensor_by_name("input:0")
-    embeddings = tf.get_default_graph().get_tensor_by_name("embeddings:0")
-    phase_train_placeholder = tf.get_default_graph().get_tensor_by_name("phase_train:0")
+            # Run forward pass to calculate embeddings
+            print(images)
+            feed_dict = {images_placeholder: images, phase_train_placeholder: False}
+            emb = sess.run(embeddings, feed_dict=feed_dict)
 
-
-    # Run forward pass to calculate embeddings
-    print(images)
-    feed_dict = {images_placeholder: images, phase_train_placeholder: False}
-    emb = sess.run(embeddings, feed_dict=feed_dict)
-
-    # Print distance matrix
-    res_feature = emb[0,:]
+            # Print distance matrix
+            res_feature = emb[0,:]
+            
     return res_feature
 
 
 
-def session(model):
-    tf.Graph().as_default()
-    gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.8)
-    sess = tf.Session(config=tf.ConfigProto(gpu_options=gpu_options, log_device_placement=False))
-    sess.as_default()
-    print(sess)
+def session(model , g2):
     starttime1 = datetime.datetime.now()
 
+    sess2 = tf.Session(config=tf.ConfigProto( log_device_placement=False),graph= g2)
+    with sess2.as_default():
+        with g2.as_default():
+            load_model(model, sess2)
+
+    
+    # gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.8)
+    # sess = tf.Session(config=tf.ConfigProto(log_device_placement=False))
+ 
+    
+
     # Load the model
-    load_model(model, sess)
+    
     starttime2 = datetime.datetime.now()
-    print("ssss%s" % (starttime2 - starttime1))
-    return sess
+    print("facenet load model time %s" % (starttime2 - starttime1))
+    return sess2
 
 
 
@@ -194,5 +204,19 @@ def prewhiten(x):
 
 
 
-# if __name__ == '__main__':
-#     main(parse_arguments(sys.argv[1:]))
+if __name__ == '__main__':
+    with tf.Graph().as_default():
+        # gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=args.gpu_memory_fraction)
+        # sess = tf.Session(config=tf.ConfigProto(gpu_options=gpu_options, log_device_placement=False))
+        sess = tf.Session(config=tf.ConfigProto( log_device_placement=False))
+        with sess.as_default():
+            pnet, rnet, onet = align.detect_face.create_mtcnn(sess, None)
+        
+        model = settings.FACENET_MODEL
+        sess_facenet = session(model)
+        print(sess_facenet)
+
+
+    
+
+

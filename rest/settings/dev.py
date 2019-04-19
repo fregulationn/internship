@@ -32,3 +32,5 @@ FACTOR = 0.709  # scale factor
 MARGIN = 4 #Margin for the crop around the bounding box (height, width) in pixels.
 IMAGE_SIZE = 160 #Image size (height, width) in pixels.
 FACENET_MODEL = "facenet/data/20180408-102900" #Could be either a directory containing the meta_file and ckpt_file or a model protobuf (.pb) file
+
+MODEL_IMAGE_PATH = "/home/junjie/Code/python_REST/images/model_pic"

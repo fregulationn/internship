@@ -12,6 +12,7 @@ from flask import Flask, jsonify, Response
 from functools import wraps
 from rest.logger import init_logger
 from rest.middleware.req_logger import RequestLogger
+from rest.api.data import User,Log,Image
 from rest.api.db import db
 
 
@@ -50,7 +51,8 @@ def app_config(app):
     """Get app config."""
     testing = app_setting() == 'ci'
     app.config.update(dict(TESTING=testing))
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.abspath(os.getcwd())+ os.pathsep+"database.db"
+    print('sqlite:///' + os.path.abspath(os.getcwd())+ os.pathsep+"/database.db")
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.abspath(os.getcwd())+"/database.db"
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
 

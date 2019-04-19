@@ -36,6 +36,7 @@ def face_points(image):
     txt = image + '.txt'
 
     if os.path.isfile(txt):
+        print("get txt :{}".format(txt))
         with open(txt) as file:
             for line in file:
                 points = line
@@ -44,7 +45,8 @@ def face_points(image):
         with open(txt, 'w') as file:
             file.write(str(points))
 
-    faces = json.loads(points)['faces']
+    s1 = json.dumps(points)
+    faces = json.loads(s1)[0]['faces']
 
     if len(faces) == 0:
         err = 404

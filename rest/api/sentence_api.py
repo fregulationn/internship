@@ -45,18 +45,22 @@ _model_type = settings.MODEL_TYPE
 
 
 def _load_model():
+    g1 = tf.Graph()
+    g2 = tf.Graph()
 
-    with tf.Graph().as_default():
-        # gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=args.gpu_memory_fraction)
-        # sess = tf.Session(config=tf.ConfigProto(gpu_options=gpu_options, log_device_placement=False))
-        sess = tf.Session(config=tf.ConfigProto( log_device_placement=False))
-        with sess.as_default():
-            pnet, rnet, onet = align.detect_face.create_mtcnn(sess, None)
-        
-        model = settings.FACENET_MODEL
-        sess_facenet = session(model)
-        
-        return pnet,rnet,onet,sess_facenet
+    
+    # gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=args.gpu_memory_fraction)
+    # sess = tf.Session(config=tf.ConfigProto(gpu_options=gpu_options, log_device_placement=False))
+    sess1 = tf.Session(config=tf.ConfigProto( log_device_placement=False),graph= g1)
+    with sess1.as_default():
+        with g1.as_default():
+            pnet, rnet, onet = align.detect_face.create_mtcnn(sess1, None)
+    
+    model = settings.FACENET_MODEL
+    sess_facenet = session(model , g2)
+    print(sess_facenet)
+    
+    return pnet,rnet,onet,sess_facenet
 
     # model_path = settings.MODELUntitled Folder
     # labels_path = settings.LABEUntitled Folder
@@ -87,22 +91,44 @@ pnet, rnet, onet, sess_facenet = _load_model()
 
 def load_model_image(model_image_path):
     files = os.listdir(model_image_path)
+   
     for file in files:
+        if "_detect" in file:
+            continue
+
         image = Image.query.filter(Image.imagepath == file).first()
         if image is not None:
+            logger.info('LOAD_MODEL_IMAGE:skipe image_name:{}'.format(file))
+            print("skip image{}".format(file))
             continue
         else:
             file_path = os.path.join(model_image_path,file)
+            print("init image path : {}".format(file_path))
             face_list, _ ,_ = detect_api(pnet, rnet, onet, file_path)
-            if len(face_list > 1):
+            if len(face_list) > 1:
                 logger.error('ERROR:load image more than one face:{}'.format(file), exc_info=True)
                 
             res_feature = embbeding(sess_facenet, face_list[0])
             db.session.add(Image(imagepath = file , feature = Image.dumps(Image,res_feature)))
             db.session.commit()
             logger.info('LOAD_MODEL_IMAGE:image_name:{}'.format(file))
-        
+            
 print("waiting call")
+
+@route(bp, '/init_compare_image', methods=['GET'])
+def init_compare_image():
+    try:
+        result = {}
+        
+        load_model_image(settings.MODEL_IMAGE_PATH)
+        result['status'] = True
+            
+        logger.info('initImage:request:{},return:{}'.format(request.json, result))
+        return result, 200
+    except Exception as e:
+        logger.error('ERROR:initImage request:{}, error:{}'.format(request.json, e), exc_info=True)
+        return None, 500
+
 
 @route(bp, 'checkUser' , methods = ['Post'])
 def checkUser():
@@ -157,7 +183,7 @@ def detect():
 
         _, outpath,_ = detect_api(pnet, rnet, onet, image_path)
 
-        db.session.add(Log(username = username,imageres = outpath ,datatime =datetime.datetime.now(),type = "detect" ))
+        db.session.add(Log(username = username,imageres = outpath ,datetime =datetime.datetime.now(),type = "detect" ))
         db.session.commit()
 
         result = {}
@@ -210,7 +236,7 @@ def recognize():
             return None, 500
         
         face_list, _ ,_ = detect_api(pnet, rnet, onet, image_path)
-        if len(face_list > 1):
+        if len(face_list)  > 1:
             if face_list[1] is not None:
                 logger.error('RECOGNIZE ERROR:more than one face request:{}, error:{}'.format(request.json, e),
                      exc_info=True)
@@ -218,7 +244,7 @@ def recognize():
 
         outpath = compare(sess_facenet, face_list[0])
 
-        db.session.add(Log(username = username,imageres = outpath ,datatime =datetime.datetime.now(),type = "recognize" ))
+        db.session.add(Log(username = username,imageres = outpath ,datetime =datetime.datetime.now(),type = "recognize" ))
         db.session.commit()
 
         result = {}
@@ -259,7 +285,7 @@ def face_fusion():
             return None, 500
         
         face_list, _ ,box= detect_api(pnet, rnet, onet, image_path)
-        if len(face_list > 1):
+        if len(face_list) > 1:
             if face_list[1] is not None:
                 logger.error('FUSION ERROR:more than one face request:{}, error:{}'.format(request.json, e),
                      exc_info=True)
@@ -280,7 +306,7 @@ def face_fusion():
                 k_size=(15, 10),
                 mat_multiple=0.95)
 
-        db.session.add(Log(username = username,imageres = outpath ,datatime =datetime.datetime.now(),type = "fusion" ))
+        db.session.add(Log(username = username,imageres = outpath ,datetime =datetime.datetime.now(),type = "fusion" ))
         db.session.commit()
 
         result = {}
@@ -303,8 +329,9 @@ def hello():
     return {'hello':'world'}, 200
 
 
-if __name__ == '__main__':
 
+if __name__ == '__main__':
+    
     temp_dir = r'C:\Users\junjie.zhang\Desktop\tmp'
     file = r'C:\Users\junjie.zhang\Desktop\吉祥人生全年综合保障计划-主条款2.txt'
     # print(_recognize_file(temp_dir, file))

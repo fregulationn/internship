@@ -26,7 +26,7 @@ def detect_api(pnet, rnet, onet, image_path):
     img = misc.imread(os.path.expanduser(image_path), mode='RGB')
     img_size = np.asarray(img.shape)[0:2]
     
-    bounding_boxes, _ = align.detect_face.detect_face(img, settings.MINIMIZE, pnet, rnet, onet, settings.threshold, settings.factor)
+    bounding_boxes, _ = align.detect_face.detect_face(img, settings.MINIMIZE, pnet, rnet, onet, settings.DETECT_THRESHOLD, settings.FACTOR)
     nrof_faces = bounding_boxes.shape[0]  # 人脸数目
 
     if nrof_faces == 0:
@@ -61,7 +61,7 @@ def detect_api(pnet, rnet, onet, image_path):
     # Output image path
     filepath,tempfilename = os.path.split(image_path)
     shotname,extension = os.path.splitext(tempfilename)
-    outpath = os.path.join(filepath,shotname+"_detect"+"."+extension)
+    outpath = os.path.join(filepath,shotname+"_detect"+extension)
 
     cv2.imwrite(outpath,img)
     endtime = datetime.datetime.now()
