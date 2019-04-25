@@ -296,9 +296,9 @@ def face_fusion():
         # Output image path
         filepath,tempfilename = os.path.split(image_path)
         shotname,extension = os.path.splitext(tempfilename)
-        outpath = os.path.join(filepath,shotname+"_fusion"+"."+extension)
+        outpath = os.path.join(filepath,shotname+"_fusion"+extension)
 
-        face_merge(src_img = model_image,
+        face_merge(src_img = os.path.join(settings.MODEL_IMAGE_PATH,model_image),
                 dst_img= image_path,
                 out_img= outpath,
                 face_area= box,

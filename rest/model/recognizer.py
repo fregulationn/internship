@@ -35,18 +35,21 @@ def face_points(image):
     points = []
     txt = image + '.txt'
 
+    # print("txt path{}".format(txt))
+
     if os.path.isfile(txt):
-        print("get txt :{}".format(txt))
+        # print("get txt :{}".format(txt))
         with open(txt) as file:
             for line in file:
                 points = line
     elif os.path.isfile(image):
         points = landmarks_by_face__(image)
+        # print("return point{}".format(points))
         with open(txt, 'w') as file:
             file.write(str(points))
 
-    s1 = json.dumps(points)
-    faces = json.loads(s1)[0]['faces']
+    # print(points)
+    faces = json.loads(points)['faces']
 
     if len(faces) == 0:
         err = 404
@@ -65,8 +68,8 @@ def face_points(image):
 def landmarks_by_face__(image):
     url = 'https://api-cn.faceplusplus.com/facepp/v3/detect'
     params = {
-        'api_key': 'UVqp3_Es7_Gr504eGd0HQR4EWtvNC7u5',
-        'api_secret': 'PB5hI_ytmOkRIYXxEQEIwmbH0bFdqrL6',
+        'api_key': 'twsPjOVjpkbZfDDaATxlWWdoGSx9QSD3',
+        'api_secret': 'PNDGmoQdejSSi7so_2nn93TjiPVaaoqo',
         'return_landmark': 1,
     }
     file = {'image_file': open(image, 'rb')}
