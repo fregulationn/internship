@@ -1,0 +1,559 @@
+2019-04-18 22:22:24 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-18 22:27:08 INFO:file:25: API-<Request 'http://0.0.0.0:9420/' [GET]> request time is 1 ms
+2019-04-18 22:27:08 INFO:werkzeug:122: 127.0.0.1 - - [18/Apr/2019 22:27:08] "[33mGET / HTTP/1.1[0m" 404 -
+2019-04-18 22:27:08 INFO:file:25: API-<Request 'http://0.0.0.0:9420/favicon.ico' [GET]> request time is 0 ms
+2019-04-18 22:27:08 INFO:werkzeug:122: 127.0.0.1 - - [18/Apr/2019 22:27:08] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2019-04-18 22:28:10 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-19 10:42:40 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-19 10:42:53 INFO:file:25: API-<Request 'http://0.0.0.0:9420/hello' [GET]> request time is 29 ms
+2019-04-19 10:42:53 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 10:42:53] "[33mGET /hello HTTP/1.1[0m" 404 -
+2019-04-19 10:42:54 INFO:file:25: API-<Request 'http://0.0.0.0:9420/favicon.ico' [GET]> request time is 0 ms
+2019-04-19 10:42:54 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 10:42:54] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2019-04-19 10:45:37 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-19 10:46:32 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-19 10:47:28 INFO:file:25: API-<Request 'http://localhost:9420/hello' [GET]> request time is 1 ms
+2019-04-19 10:47:28 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 10:47:28] "[33mGET /hello HTTP/1.1[0m" 404 -
+2019-04-19 10:47:28 INFO:file:25: API-<Request 'http://localhost:9420/favicon.ico' [GET]> request time is 0 ms
+2019-04-19 10:47:28 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 10:47:28] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2019-04-19 10:47:54 INFO:file:25: API-<Request 'http://localhost:9420/rest/hello' [GET]> request time is 0 ms
+2019-04-19 10:47:54 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 10:47:54] "[37mGET /rest/hello HTTP/1.1[0m" 200 -
+2019-04-19 11:21:06 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-19 11:23:11 INFO:file:25: API-<Request 'http://localhost:9420/rest/hello' [GET]> request time is 0 ms
+2019-04-19 11:23:11 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 11:23:11] "[37mGET /rest/hello HTTP/1.1[0m" 200 -
+2019-04-19 11:25:27 INFO:file:25: API-<Request 'http://localhost:9420/rest/hello' [GET]> request time is 0 ms
+2019-04-19 11:25:27 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 11:25:27] "[37mGET /rest/hello HTTP/1.1[0m" 200 -
+2019-04-19 19:33:55 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-19 19:41:52 ERROR:file:186: DETECT ERROR:recognize_sentence request:{'user_Id': 'qk125463', 'inputImage': '/home/junjie/Code/python_REST/images/2282038-13d70b5c2508afda.jpg'}, error:module 'rest.settings.dev' has no attribute 'threshold'
+Traceback (most recent call last):
+  File "/home/junjie/Code/python_REST/rest/api/sentence_api.py", line 158, in detect
+    _, outpath,_ = detect_api(pnet, rnet, onet, image_path)
+  File "/home/junjie/Code/python_REST/rest/model/detect.py", line 29, in detect_api
+    bounding_boxes, _ = align.detect_face.detect_face(img, settings.MINIMIZE, pnet, rnet, onet, settings.threshold, settings.factor)
+AttributeError: module 'rest.settings.dev' has no attribute 'threshold'
+2019-04-19 19:41:52 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 19:41:52] "[1m[35mPOST /rest/detect HTTP/1.1[0m" 500 -
+2019-04-19 19:43:31 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-19 19:43:36 ERROR:file:186: DETECT ERROR:recognize_sentence request:{'user_Id': 'qk125463', 'inputImage': '/home/junjie/Code/python_REST/images/2282038-13d70b5c2508afda.jpg'}, error:module 'rest.settings.dev' has no attribute 'THRESHOLD'
+Traceback (most recent call last):
+  File "/home/junjie/Code/python_REST/rest/api/sentence_api.py", line 158, in detect
+    _, outpath,_ = detect_api(pnet, rnet, onet, image_path)
+  File "/home/junjie/Code/python_REST/rest/model/detect.py", line 29, in detect_api
+    bounding_boxes, _ = align.detect_face.detect_face(img, settings.MINIMIZE, pnet, rnet, onet, settings.THRESHOLD, settings.FACTOR)
+AttributeError: module 'rest.settings.dev' has no attribute 'THRESHOLD'
+2019-04-19 19:43:36 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 19:43:36] "[1m[35mPOST /rest/detect HTTP/1.1[0m" 500 -
+2019-04-19 19:44:07 ERROR:file:186: DETECT ERROR:recognize_sentence request:{'user_Id': 'qk125463', 'inputImage': '/home/junjie/Code/python_REST/images/2282038-13d70b5c2508afda.jpg'}, error:module 'rest.settings.dev' has no attribute 'THRESHOLD'
+Traceback (most recent call last):
+  File "/home/junjie/Code/python_REST/rest/api/sentence_api.py", line 158, in detect
+    _, outpath,_ = detect_api(pnet, rnet, onet, image_path)
+  File "/home/junjie/Code/python_REST/rest/model/detect.py", line 29, in detect_api
+    bounding_boxes, _ = align.detect_face.detect_face(img, settings.MINIMIZE, pnet, rnet, onet, settings.DETECT_THRESHOLD, settings.FACTOR)
+AttributeError: module 'rest.settings.dev' has no attribute 'THRESHOLD'
+2019-04-19 19:44:07 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 19:44:07] "[1m[35mPOST /rest/detect HTTP/1.1[0m" 500 -
+2019-04-19 19:45:26 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-19 19:45:34 ERROR:file:186: DETECT ERROR:recognize_sentence request:{'user_Id': 'qk125463', 'inputImage': '/home/junjie/Code/python_REST/images/2282038-13d70b5c2508afda.jpg'}, error:'datatime' is an invalid keyword argument for Log
+Traceback (most recent call last):
+  File "/home/junjie/Code/python_REST/rest/api/sentence_api.py", line 160, in detect
+    db.session.add(Log(username = username,imageres = outpath ,datatime =datetime.datetime.now(),type = "detect" ))
+  File "<string>", line 4, in __init__
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/orm/state.py", line 441, in _initialize_instance
+    manager.dispatch.init_failure(self, args, kwargs)
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/util/langhelpers.py", line 68, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 129, in reraise
+    raise value
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/orm/state.py", line 438, in _initialize_instance
+    return manager.original_init(*mixed[1:], **kwargs)
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/ext/declarative/base.py", line 834, in _declarative_constructor
+    "%r is an invalid keyword argument for %s" % (k, cls_.__name__)
+TypeError: 'datatime' is an invalid keyword argument for Log
+2019-04-19 19:45:34 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 19:45:34] "[1m[35mPOST /rest/detect HTTP/1.1[0m" 500 -
+2019-04-19 19:46:41 ERROR:file:186: DETECT ERROR:recognize_sentence request:{'user_Id': 'qk125463', 'inputImage': '/home/junjie/Code/python_REST/images/2282038-13d70b5c2508afda.jpg'}, error:'datatime' is an invalid keyword argument for Log
+Traceback (most recent call last):
+  File "/home/junjie/Code/python_REST/rest/api/sentence_api.py", line 160, in detect
+    db.session.add(Log(username = username,imageres = outpath ,datetime =datetime.datetime.now(),type = "detect" ))
+  File "<string>", line 4, in __init__
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/orm/state.py", line 441, in _initialize_instance
+    manager.dispatch.init_failure(self, args, kwargs)
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/util/langhelpers.py", line 68, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 129, in reraise
+    raise value
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/orm/state.py", line 438, in _initialize_instance
+    return manager.original_init(*mixed[1:], **kwargs)
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/ext/declarative/base.py", line 834, in _declarative_constructor
+    "%r is an invalid keyword argument for %s" % (k, cls_.__name__)
+TypeError: 'datatime' is an invalid keyword argument for Log
+2019-04-19 19:46:41 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 19:46:41] "[1m[35mPOST /rest/detect HTTP/1.1[0m" 500 -
+2019-04-19 19:47:18 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-19 19:47:29 ERROR:file:186: DETECT ERROR:recognize_sentence request:{'user_Id': 'qk125463', 'inputImage': '/home/junjie/Code/python_REST/images/2282038-13d70b5c2508afda.jpg'}, error:(sqlite3.OperationalError) no such table: logs
+[SQL: INSERT INTO logs (username, imageres, datetime, type) VALUES (?, ?, ?, ?)]
+[parameters: ('qk125463', '/home/junjie/Code/python_REST/images/2282038-13d70b5c2508afda_detect..jpg', '2019-04-19 19:47:29.889923', 'detect')]
+(Background on this error at: http://sqlalche.me/e/e3q8)
+Traceback (most recent call last):
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1244, in _execute_context
+    cursor, statement, parameters, context
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 552, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: logs
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/junjie/Code/python_REST/rest/api/sentence_api.py", line 161, in detect
+    db.session.commit()
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/orm/scoping.py", line 162, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1026, in commit
+    self.transaction.commit()
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 493, in commit
+    self._prepare_impl()
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 472, in _prepare_impl
+    self.session.flush()
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 2451, in flush
+    self._flush(objects)
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 2589, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/util/langhelpers.py", line 68, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 129, in reraise
+    raise value
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 2549, in _flush
+    flush_context.execute()
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/orm/unitofwork.py", line 422, in execute
+    rec.execute(self)
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/orm/unitofwork.py", line 589, in execute
+    uow,
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/orm/persistence.py", line 245, in save_obj
+    insert,
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/orm/persistence.py", line 1120, in _emit_insert_statements
+    statement, params
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 988, in execute
+    return meth(self, multiparams, params)
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 287, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1107, in _execute_clauseelement
+    distilled_params,
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1248, in _execute_context
+    e, statement, parameters, cursor, context
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1466, in _handle_dbapi_exception
+    util.raise_from_cause(sqlalchemy_exception, exc_info)
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 383, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 128, in reraise
+    raise value.with_traceback(tb)
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1244, in _execute_context
+    cursor, statement, parameters, context
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 552, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: logs
+[SQL: INSERT INTO logs (username, imageres, datetime, type) VALUES (?, ?, ?, ?)]
+[parameters: ('qk125463', '/home/junjie/Code/python_REST/images/2282038-13d70b5c2508afda_detect..jpg', '2019-04-19 19:47:29.889923', 'detect')]
+(Background on this error at: http://sqlalche.me/e/e3q8)
+2019-04-19 19:47:29 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 19:47:29] "[1m[35mPOST /rest/detect HTTP/1.1[0m" 500 -
+2019-04-19 19:53:18 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-19 19:55:04 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-19 19:55:49 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-19 19:58:07 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-19 19:58:29 INFO:file:168: DETECT PREDICT:request:{'user_Id': 'qk125463', 'inputImage': '/home/junjie/Code/python_REST/images/2282038-13d70b5c2508afda.jpg'},predict:{'user_Id': 'qk125463', 'time': datetime.datetime(2019, 4, 19, 19, 58, 29, 538485), 'type': 'detect', 'outputImage': '/home/junjie/Code/python_REST/images/2282038-13d70b5c2508afda_detect..jpg'}
+2019-04-19 19:58:29 INFO:file:25: API-<Request 'http://localhost:9420/rest/detect' [POST]> request time is 2518 ms
+2019-04-19 19:58:29 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 19:58:29] "[37mPOST /rest/detect HTTP/1.1[0m" 200 -
+2019-04-19 20:09:16 ERROR:file:186: DETECT ERROR:recognize_sentence request:{'user_Id': 'qk125463', 'inputImage': '/home/junjie/Code/python_REST/images/2282038-13d70b5c2508afda.jpg'}, error:(sqlite3.IntegrityError) UNIQUE constraint failed: logs.imageres
+[SQL: INSERT INTO logs (username, imageres, datetime, type) VALUES (?, ?, ?, ?)]
+[parameters: ('qk125463', '/home/junjie/Code/python_REST/images/2282038-13d70b5c2508afda_detect..jpg', '2019-04-19 20:09:16.947619', 'detect')]
+(Background on this error at: http://sqlalche.me/e/gkpj)
+Traceback (most recent call last):
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1244, in _execute_context
+    cursor, statement, parameters, context
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 552, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.IntegrityError: UNIQUE constraint failed: logs.imageres
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/junjie/Code/python_REST/rest/api/sentence_api.py", line 161, in detect
+    db.session.commit()
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/orm/scoping.py", line 162, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1026, in commit
+    self.transaction.commit()
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 493, in commit
+    self._prepare_impl()
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 472, in _prepare_impl
+    self.session.flush()
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 2451, in flush
+    self._flush(objects)
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 2589, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/util/langhelpers.py", line 68, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 129, in reraise
+    raise value
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 2549, in _flush
+    flush_context.execute()
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/orm/unitofwork.py", line 422, in execute
+    rec.execute(self)
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/orm/unitofwork.py", line 589, in execute
+    uow,
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/orm/persistence.py", line 245, in save_obj
+    insert,
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/orm/persistence.py", line 1120, in _emit_insert_statements
+    statement, params
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 988, in execute
+    return meth(self, multiparams, params)
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 287, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1107, in _execute_clauseelement
+    distilled_params,
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1248, in _execute_context
+    e, statement, parameters, cursor, context
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1466, in _handle_dbapi_exception
+    util.raise_from_cause(sqlalchemy_exception, exc_info)
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 383, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 128, in reraise
+    raise value.with_traceback(tb)
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1244, in _execute_context
+    cursor, statement, parameters, context
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 552, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.IntegrityError: (sqlite3.IntegrityError) UNIQUE constraint failed: logs.imageres
+[SQL: INSERT INTO logs (username, imageres, datetime, type) VALUES (?, ?, ?, ?)]
+[parameters: ('qk125463', '/home/junjie/Code/python_REST/images/2282038-13d70b5c2508afda_detect..jpg', '2019-04-19 20:09:16.947619', 'detect')]
+(Background on this error at: http://sqlalche.me/e/gkpj)
+2019-04-19 20:09:16 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 20:09:16] "[1m[35mPOST /rest/detect HTTP/1.1[0m" 500 -
+2019-04-19 20:11:57 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-19 20:12:14 ERROR:file:234: RECOGNIZE ERROR:recognize_sentence request:{'user_Id': 'qk125463', 'inputImage': '/home/junjie/Code/python_REST/images/2282038-13d70b5c2508afda.jpg'}, error:'>' not supported between instances of 'list' and 'int'
+Traceback (most recent call last):
+  File "/home/junjie/Code/python_REST/rest/api/sentence_api.py", line 213, in recognize
+    if len(face_list > 1):
+TypeError: '>' not supported between instances of 'list' and 'int'
+2019-04-19 20:12:14 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 20:12:14] "[1m[35mPOST /rest/recognize HTTP/1.1[0m" 500 -
+2019-04-19 20:12:19 INFO:file:168: DETECT PREDICT:request:{'user_Id': 'qk125463', 'inputImage': '/home/junjie/Code/python_REST/images/2282038-13d70b5c2508afda.jpg'},predict:{'user_Id': 'qk125463', 'time': datetime.datetime(2019, 4, 19, 20, 12, 19, 758838), 'type': 'detect', 'outputImage': '/home/junjie/Code/python_REST/images/2282038-13d70b5c2508afda_detect..jpg'}
+2019-04-19 20:12:19 INFO:file:25: API-<Request 'http://localhost:9420/rest/detect' [POST]> request time is 161 ms
+2019-04-19 20:12:19 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 20:12:19] "[37mPOST /rest/detect HTTP/1.1[0m" 200 -
+2019-04-19 20:12:21 INFO:file:168: DETECT PREDICT:request:{'user_Id': 'qk125463', 'inputImage': '/home/junjie/Code/python_REST/images/2282038-13d70b5c2508afda.jpg'},predict:{'user_Id': 'qk125463', 'time': datetime.datetime(2019, 4, 19, 20, 12, 21, 887295), 'type': 'detect', 'outputImage': '/home/junjie/Code/python_REST/images/2282038-13d70b5c2508afda_detect..jpg'}
+2019-04-19 20:12:21 INFO:file:25: API-<Request 'http://localhost:9420/rest/detect' [POST]> request time is 248 ms
+2019-04-19 20:12:21 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 20:12:21] "[37mPOST /rest/detect HTTP/1.1[0m" 200 -
+2019-04-19 20:14:39 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-19 20:16:23 ERROR:file:234: RECOGNIZE ERROR:recognize_sentence request:{'user_Id': 'qk125463', 'inputImage': '/home/junjie/Code/python_REST/images/2282038-13d70b5c2508afda.jpg'}, error:"The name 'input:0' refers to a Tensor which does not exist. The operation, 'input', does not exist in the graph."
+Traceback (most recent call last):
+  File "/home/junjie/Code/python_REST/rest/api/sentence_api.py", line 219, in recognize
+    outpath = compare(sess_facenet, face_list[0])
+  File "/home/junjie/Code/python_REST/rest/model/compare.py", line 35, in compare
+    images_placeholder = tf.get_default_graph().get_tensor_by_name("input:0")
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/tensorflow/python/framework/ops.py", line 3635, in get_tensor_by_name
+    return self.as_graph_element(name, allow_tensor=True, allow_operation=False)
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/tensorflow/python/framework/ops.py", line 3459, in as_graph_element
+    return self._as_graph_element_locked(obj, allow_tensor, allow_operation)
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/tensorflow/python/framework/ops.py", line 3501, in _as_graph_element_locked
+    "graph." % (repr(name), repr(op_name)))
+KeyError: "The name 'input:0' refers to a Tensor which does not exist. The operation, 'input', does not exist in the graph."
+2019-04-19 20:16:23 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 20:16:23] "[1m[35mPOST /rest/recognize HTTP/1.1[0m" 500 -
+2019-04-19 20:18:24 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-19 20:18:36 ERROR:file:234: RECOGNIZE ERROR:recognize_sentence request:{'user_Id': 'qk125463', 'inputImage': '/home/junjie/Code/python_REST/images/2282038-13d70b5c2508afda.jpg'}, error:"The name 'input:0' refers to a Tensor which does not exist. The operation, 'input', does not exist in the graph."
+Traceback (most recent call last):
+  File "/home/junjie/Code/python_REST/rest/api/sentence_api.py", line 219, in recognize
+    outpath = compare(sess_facenet, face_list[0])
+  File "/home/junjie/Code/python_REST/rest/model/compare.py", line 35, in compare
+    images_placeholder = tf.get_default_graph().get_tensor_by_name("input:0")
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/tensorflow/python/framework/ops.py", line 3635, in get_tensor_by_name
+    return self.as_graph_element(name, allow_tensor=True, allow_operation=False)
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/tensorflow/python/framework/ops.py", line 3459, in as_graph_element
+    return self._as_graph_element_locked(obj, allow_tensor, allow_operation)
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/tensorflow/python/framework/ops.py", line 3501, in _as_graph_element_locked
+    "graph." % (repr(name), repr(op_name)))
+KeyError: "The name 'input:0' refers to a Tensor which does not exist. The operation, 'input', does not exist in the graph."
+2019-04-19 20:18:36 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 20:18:36] "[1m[35mPOST /rest/recognize HTTP/1.1[0m" 500 -
+2019-04-19 20:21:24 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-19 20:22:58 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-19 20:37:35 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-19 20:37:42 ERROR:file:121: ERROR:initImage request:None, error:name 'app' is not defined
+Traceback (most recent call last):
+  File "/home/junjie/Code/python_REST/rest/api/sentence_api.py", line 115, in init_compare_image
+    load_model_image(settings.MODEL_IMAGE_PATH)
+  File "/home/junjie/Code/python_REST/rest/api/sentence_api.py", line 90, in load_model_image
+    with app.app_context():
+NameError: name 'app' is not defined
+2019-04-19 20:37:42 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 20:37:42] "[1m[35mGET /rest/init_compare_image HTTP/1.1[0m" 500 -
+2019-04-19 20:38:06 ERROR:file:121: ERROR:initImage request:None, error:name 'app' is not defined
+Traceback (most recent call last):
+  File "/home/junjie/Code/python_REST/rest/api/sentence_api.py", line 115, in init_compare_image
+    load_model_image(settings.MODEL_IMAGE_PATH)
+  File "/home/junjie/Code/python_REST/rest/api/sentence_api.py", line 90, in load_model_image
+NameError: name 'app' is not defined
+2019-04-19 20:38:06 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 20:38:06] "[1m[35mGET /rest/init_compare_image HTTP/1.1[0m" 500 -
+2019-04-19 20:38:32 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-19 20:38:37 ERROR:file:121: ERROR:initImage request:None, error:'>' not supported between instances of 'list' and 'int'
+Traceback (most recent call last):
+  File "/home/junjie/Code/python_REST/rest/api/sentence_api.py", line 115, in init_compare_image
+    load_model_image(settings.MODEL_IMAGE_PATH)
+  File "/home/junjie/Code/python_REST/rest/api/sentence_api.py", line 100, in load_model_image
+    if len(face_list > 1):
+TypeError: '>' not supported between instances of 'list' and 'int'
+2019-04-19 20:38:37 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 20:38:37] "[1m[35mGET /rest/init_compare_image HTTP/1.1[0m" 500 -
+2019-04-19 20:43:00 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-19 20:43:09 ERROR:file:121: ERROR:initImage request:None, error:"The name 'input:0' refers to a Tensor which does not exist. The operation, 'input', does not exist in the graph."
+Traceback (most recent call last):
+  File "/home/junjie/Code/python_REST/rest/api/sentence_api.py", line 115, in init_compare_image
+    load_model_image(settings.MODEL_IMAGE_PATH)
+  File "/home/junjie/Code/python_REST/rest/api/sentence_api.py", line 103, in load_model_image
+    res_feature = embbeding(sess_facenet, face_list[0])
+  File "/home/junjie/Code/python_REST/rest/model/compare.py", line 101, in embbeding
+    images_placeholder = tf.get_default_graph().get_tensor_by_name("input:0")
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/tensorflow/python/framework/ops.py", line 3635, in get_tensor_by_name
+    return self.as_graph_element(name, allow_tensor=True, allow_operation=False)
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/tensorflow/python/framework/ops.py", line 3459, in as_graph_element
+    return self._as_graph_element_locked(obj, allow_tensor, allow_operation)
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/tensorflow/python/framework/ops.py", line 3501, in _as_graph_element_locked
+    "graph." % (repr(name), repr(op_name)))
+KeyError: "The name 'input:0' refers to a Tensor which does not exist. The operation, 'input', does not exist in the graph."
+2019-04-19 20:43:09 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 20:43:09] "[1m[35mGET /rest/init_compare_image HTTP/1.1[0m" 500 -
+2019-04-19 20:52:08 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-19 21:08:56 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-19 21:09:58 ERROR:file:125: ERROR:initImage request:None, error:Object of type 'ndarray' is not JSON serializable
+Traceback (most recent call last):
+  File "/home/junjie/Code/python_REST/rest/api/sentence_api.py", line 119, in init_compare_image
+    load_model_image(settings.MODEL_IMAGE_PATH)
+  File "/home/junjie/Code/python_REST/rest/api/sentence_api.py", line 108, in load_model_image
+    db.session.add(Image(imagepath = file , feature = Image.dumps(Image,res_feature)))
+  File "/home/junjie/Code/python_REST/rest/api/data.py", line 25, in dumps
+    return json.dumps(arr)
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/json/__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'ndarray' is not JSON serializable
+2019-04-19 21:09:58 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 21:09:58] "[1m[35mGET /rest/init_compare_image HTTP/1.1[0m" 500 -
+2019-04-19 21:12:22 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-19 21:12:32 INFO:file:110: LOAD_MODEL_IMAGE:image_name:00001.jpeg
+2019-04-19 21:12:32 INFO:file:110: LOAD_MODEL_IMAGE:image_name:00004.jpg
+2019-04-19 21:12:33 ERROR:file:125: ERROR:initImage request:None, error:'NoneType' object is not iterable
+Traceback (most recent call last):
+  File "/home/junjie/Code/python_REST/rest/api/sentence_api.py", line 119, in init_compare_image
+    load_model_image(settings.MODEL_IMAGE_PATH)
+  File "/home/junjie/Code/python_REST/rest/api/sentence_api.py", line 103, in load_model_image
+    face_list, _ ,_ = detect_api(pnet, rnet, onet, file_path)
+TypeError: 'NoneType' object is not iterable
+2019-04-19 21:12:33 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 21:12:33] "[1m[35mGET /rest/init_compare_image HTTP/1.1[0m" 500 -
+2019-04-19 21:14:21 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-19 21:15:26 ERROR:file:106: ERROR:load image more than one face:00004_detect..jpg
+NoneType: None
+2019-04-19 21:15:27 INFO:file:111: LOAD_MODEL_IMAGE:image_name:00004_detect..jpg
+2019-04-19 21:15:27 INFO:file:98: LOAD_MODEL_IMAGE:skipe image_name:00001.jpeg
+2019-04-19 21:15:27 INFO:file:98: LOAD_MODEL_IMAGE:skipe image_name:00004.jpg
+2019-04-19 21:15:27 ERROR:file:126: ERROR:initImage request:None, error:'NoneType' object is not iterable
+Traceback (most recent call last):
+  File "/home/junjie/Code/python_REST/rest/api/sentence_api.py", line 120, in init_compare_image
+    load_model_image(settings.MODEL_IMAGE_PATH)
+  File "/home/junjie/Code/python_REST/rest/api/sentence_api.py", line 104, in load_model_image
+    face_list, _ ,_ = detect_api(pnet, rnet, onet, file_path)
+TypeError: 'NoneType' object is not iterable
+2019-04-19 21:15:27 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 21:15:27] "[1m[35mGET /rest/init_compare_image HTTP/1.1[0m" 500 -
+2019-04-19 21:18:57 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-19 21:19:26 INFO:file:101: LOAD_MODEL_IMAGE:skipe image_name:00001.jpeg
+2019-04-19 21:19:26 INFO:file:101: LOAD_MODEL_IMAGE:skipe image_name:00004.jpg
+2019-04-19 21:19:27 INFO:file:114: LOAD_MODEL_IMAGE:image_name:00002.jpeg
+2019-04-19 21:19:28 INFO:file:114: LOAD_MODEL_IMAGE:image_name:00003.jpeg
+2019-04-19 21:19:28 INFO:file:126: initImage:request:None,return:{'status': True}
+2019-04-19 21:19:28 INFO:file:25: API-<Request 'http://localhost:9420/rest/init_compare_image' [GET]> request time is 2506 ms
+2019-04-19 21:19:28 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 21:19:28] "[37mGET /rest/init_compare_image HTTP/1.1[0m" 200 -
+2019-04-19 21:21:04 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-19 21:21:34 INFO:file:114: LOAD_MODEL_IMAGE:image_name:00001.jpeg
+2019-04-19 21:21:34 INFO:file:114: LOAD_MODEL_IMAGE:image_name:00004.jpg
+2019-04-19 21:21:35 INFO:file:114: LOAD_MODEL_IMAGE:image_name:00002.jpeg
+2019-04-19 21:21:36 INFO:file:114: LOAD_MODEL_IMAGE:image_name:00003.jpeg
+2019-04-19 21:21:36 INFO:file:126: initImage:request:None,return:{'status': True}
+2019-04-19 21:21:36 INFO:file:25: API-<Request 'http://localhost:9420/rest/init_compare_image' [GET]> request time is 3386 ms
+2019-04-19 21:21:36 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 21:21:36] "[37mGET /rest/init_compare_image HTTP/1.1[0m" 200 -
+2019-04-19 21:21:55 ERROR:file:260: RECOGNIZE ERROR:recognize_sentence request:{'user_Id': 'qk125463', 'inputImage': '/home/junjie/Code/python_REST/images/2282038-13d70b5c2508afda.jpg'}, error:"The name 'input:0' refers to a Tensor which does not exist. The operation, 'input', does not exist in the graph."
+Traceback (most recent call last):
+  File "/home/junjie/Code/python_REST/rest/api/sentence_api.py", line 245, in recognize
+    outpath = compare(sess_facenet, face_list[0])
+  File "/home/junjie/Code/python_REST/rest/model/compare.py", line 37, in compare
+    images_placeholder = tf.get_default_graph().get_tensor_by_name("input:0")
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/tensorflow/python/framework/ops.py", line 3635, in get_tensor_by_name
+    return self.as_graph_element(name, allow_tensor=True, allow_operation=False)
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/tensorflow/python/framework/ops.py", line 3459, in as_graph_element
+    return self._as_graph_element_locked(obj, allow_tensor, allow_operation)
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/tensorflow/python/framework/ops.py", line 3501, in _as_graph_element_locked
+    "graph." % (repr(name), repr(op_name)))
+KeyError: "The name 'input:0' refers to a Tensor which does not exist. The operation, 'input', does not exist in the graph."
+2019-04-19 21:21:55 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 21:21:55] "[1m[35mPOST /rest/recognize HTTP/1.1[0m" 500 -
+2019-04-19 21:24:59 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-19 21:25:44 ERROR:file:260: RECOGNIZE ERROR:recognize_sentence request:{'user_Id': 'qk125463', 'inputImage': '/home/junjie/Code/python_REST/images/2282038-13d70b5c2508afda.jpg'}, error:'Image' object has no attribute 'tmp_feature'
+Traceback (most recent call last):
+  File "/home/junjie/Code/python_REST/rest/api/sentence_api.py", line 245, in recognize
+    outpath = compare(sess_facenet, face_list[0])
+  File "/home/junjie/Code/python_REST/rest/model/compare.py", line 64, in compare
+    dist = np.sqrt(np.sum(np.square(np.subtract(res_feature,Image.loads(Image,image.tmp_feature)))))
+AttributeError: 'Image' object has no attribute 'tmp_feature'
+2019-04-19 21:25:44 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 21:25:44] "[1m[35mPOST /rest/recognize HTTP/1.1[0m" 500 -
+2019-04-19 21:27:18 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-19 21:27:42 ERROR:file:260: RECOGNIZE ERROR:recognize_sentence request:{'user_Id': 'qk125463', 'inputImage': '/home/junjie/Code/python_REST/images/2282038-13d70b5c2508afda.jpg'}, error:'Image' object has no attribute 'name'
+Traceback (most recent call last):
+  File "/home/junjie/Code/python_REST/rest/api/sentence_api.py", line 245, in recognize
+    outpath = compare(sess_facenet, face_list[0])
+  File "/home/junjie/Code/python_REST/rest/model/compare.py", line 67, in compare
+    min_pic = image.name
+AttributeError: 'Image' object has no attribute 'name'
+2019-04-19 21:27:42 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 21:27:42] "[1m[35mPOST /rest/recognize HTTP/1.1[0m" 500 -
+2019-04-19 21:28:34 ERROR:file:260: RECOGNIZE ERROR:recognize_sentence request:{'user_Id': 'qk125463', 'inputImage': '/home/junjie/Code/python_REST/images/2282038-13d70b5c2508afda.jpg'}, error:'Image' object has no attribute 'name'
+Traceback (most recent call last):
+  File "/home/junjie/Code/python_REST/rest/api/sentence_api.py", line 245, in recognize
+    outpath = compare(sess_facenet, face_list[0])
+  File "/home/junjie/Code/python_REST/rest/model/compare.py", line 67, in compare
+    min_pic = image.imagepath
+AttributeError: 'Image' object has no attribute 'name'
+2019-04-19 21:28:34 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 21:28:34] "[1m[35mPOST /rest/recognize HTTP/1.1[0m" 500 -
+2019-04-19 21:30:02 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-19 21:31:08 ERROR:file:260: RECOGNIZE ERROR:recognize_sentence request:{'user_Id': 'qk125463', 'inputImage': '/home/junjie/Code/python_REST/images/2282038-13d70b5c2508afda.jpg'}, error:'Image' object has no attribute 'name'
+Traceback (most recent call last):
+  File "/home/junjie/Code/python_REST/rest/api/sentence_api.py", line 245, in recognize
+    outpath = compare(sess_facenet, face_list[0])
+  File "/home/junjie/Code/python_REST/rest/model/compare.py", line 89, in compare
+    return image.name
+AttributeError: 'Image' object has no attribute 'name'
+2019-04-19 21:31:08 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 21:31:08] "[1m[35mPOST /rest/recognize HTTP/1.1[0m" 500 -
+2019-04-19 21:31:27 ERROR:file:260: RECOGNIZE ERROR:recognize_sentence request:{'user_Id': 'qk125463', 'inputImage': '/home/junjie/Code/python_REST/images/2282038-13d70b5c2508afda.jpg'}, error:'Image' object has no attribute 'name'
+Traceback (most recent call last):
+  File "/home/junjie/Code/python_REST/rest/api/sentence_api.py", line 245, in recognize
+    outpath = compare(sess_facenet, face_list[0])
+  File "/home/junjie/Code/python_REST/rest/model/compare.py", line 89, in compare
+    return image.imagepath
+AttributeError: 'Image' object has no attribute 'name'
+2019-04-19 21:31:27 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 21:31:27] "[1m[35mPOST /rest/recognize HTTP/1.1[0m" 500 -
+2019-04-19 21:31:58 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-19 21:33:33 ERROR:file:260: RECOGNIZE ERROR:recognize_sentence request:{'user_Id': 'qk125463', 'inputImage': '/home/junjie/Code/python_REST/images/2282038-13d70b5c2508afda.jpg'}, error:'datatime' is an invalid keyword argument for Log
+Traceback (most recent call last):
+  File "/home/junjie/Code/python_REST/rest/api/sentence_api.py", line 247, in recognize
+    db.session.add(Log(username = username,imageres = outpath ,datatime =datetime.datetime.now(),type = "recognize" ))
+  File "<string>", line 4, in __init__
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/orm/state.py", line 441, in _initialize_instance
+    manager.dispatch.init_failure(self, args, kwargs)
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/util/langhelpers.py", line 68, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 129, in reraise
+    raise value
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/orm/state.py", line 438, in _initialize_instance
+    return manager.original_init(*mixed[1:], **kwargs)
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/site-packages/sqlalchemy/ext/declarative/base.py", line 834, in _declarative_constructor
+    "%r is an invalid keyword argument for %s" % (k, cls_.__name__)
+TypeError: 'datatime' is an invalid keyword argument for Log
+2019-04-19 21:33:33 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 21:33:33] "[1m[35mPOST /rest/recognize HTTP/1.1[0m" 500 -
+2019-04-19 21:34:29 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-19 21:35:04 INFO:file:255: RECOGNIZE PREDICT:request:{'user_Id': 'qk125463', 'inputImage': '/home/junjie/Code/python_REST/images/2282038-13d70b5c2508afda.jpg'},predict:{'user_Id': 'qk125463', 'time': datetime.datetime(2019, 4, 19, 21, 35, 4, 845084), 'type': 'recognize', 'outputImage': '00003.jpeg'}
+2019-04-19 21:35:04 INFO:file:25: API-<Request 'http://localhost:9420/rest/recognize' [POST]> request time is 833 ms
+2019-04-19 21:35:04 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 21:35:04] "[37mPOST /rest/recognize HTTP/1.1[0m" 200 -
+2019-04-19 21:36:33 INFO:file:25: API-<Request 'http://localhost:9420/rest/fusion' [POST]> request time is 15 ms
+2019-04-19 21:36:33 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 21:36:33] "[33mPOST /rest/fusion HTTP/1.1[0m" 404 -
+2019-04-19 21:36:38 INFO:file:25: API-<Request 'http://localhost:9420/rest/fusion' [POST]> request time is 0 ms
+2019-04-19 21:36:38 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 21:36:38] "[33mPOST /rest/fusion HTTP/1.1[0m" 404 -
+2019-04-19 21:36:51 ERROR:file:322: FUSION ERROR:recognize_sentence request:{'user_Id': 'qk125463', 'inputImage': '/home/junjie/Code/python_REST/images/2282038-13d70b5c2508afda.jpg'}, error:the JSON object must be str, bytes or bytearray, not 'list'
+Traceback (most recent call last):
+  File "/home/junjie/Code/python_REST/rest/api/sentence_api.py", line 307, in face_fusion
+    mat_multiple=0.95)
+  File "/home/junjie/Code/python_REST/rest/model/morpher.py", line 177, in face_merge
+    src_matrix, src_points, err = core.face_points(src_img)
+  File "/home/junjie/Code/python_REST/rest/model/recognizer.py", line 47, in face_points
+    faces = json.loads(points)['faces']
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/json/__init__.py", line 348, in loads
+    'not {!r}'.format(s.__class__.__name__))
+TypeError: the JSON object must be str, bytes or bytearray, not 'list'
+2019-04-19 21:36:51 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 21:36:51] "[1m[35mPOST /rest/face_fusion HTTP/1.1[0m" 500 -
+2019-04-19 21:45:04 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-19 21:45:11 ERROR:file:322: FUSION ERROR:recognize_sentence request:{'user_Id': 'qk125463', 'inputImage': '/home/junjie/Code/python_REST/images/2282038-13d70b5c2508afda.jpg'}, error:'list' object has no attribute 'read'
+Traceback (most recent call last):
+  File "/home/junjie/Code/python_REST/rest/api/sentence_api.py", line 307, in face_fusion
+    mat_multiple=0.95)
+  File "/home/junjie/Code/python_REST/rest/model/morpher.py", line 177, in face_merge
+    src_matrix, src_points, err = core.face_points(src_img)
+  File "/home/junjie/Code/python_REST/rest/model/recognizer.py", line 47, in face_points
+    faces = json.load(points)['faces']
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/json/__init__.py", line 296, in load
+    return loads(fp.read(),
+AttributeError: 'list' object has no attribute 'read'
+2019-04-19 21:45:11 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 21:45:11] "[1m[35mPOST /rest/face_fusion HTTP/1.1[0m" 500 -
+2019-04-19 21:49:04 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-19 21:50:37 ERROR:file:322: FUSION ERROR:recognize_sentence request:{'user_Id': 'qk125463', 'inputImage': '/home/junjie/Code/python_REST/images/2282038-13d70b5c2508afda.jpg'}, error:list indices must be integers or slices, not str
+Traceback (most recent call last):
+  File "/home/junjie/Code/python_REST/rest/api/sentence_api.py", line 307, in face_fusion
+    mat_multiple=0.95)
+  File "/home/junjie/Code/python_REST/rest/model/morpher.py", line 177, in face_merge
+    src_matrix, src_points, err = core.face_points(src_img)
+  File "/home/junjie/Code/python_REST/rest/model/recognizer.py", line 49, in face_points
+    faces = json.loads(s1)['faces']
+TypeError: list indices must be integers or slices, not str
+2019-04-19 21:50:37 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 21:50:37] "[1m[35mPOST /rest/face_fusion HTTP/1.1[0m" 500 -
+2019-04-19 21:53:09 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-19 21:53:43 ERROR:file:322: FUSION ERROR:recognize_sentence request:{'user_Id': 'qk125463', 'inputImage': '/home/junjie/Code/python_REST/images/2282038-13d70b5c2508afda.jpg'}, error:list index out of range
+Traceback (most recent call last):
+  File "/home/junjie/Code/python_REST/rest/api/sentence_api.py", line 307, in face_fusion
+    mat_multiple=0.95)
+  File "/home/junjie/Code/python_REST/rest/model/morpher.py", line 177, in face_merge
+    src_matrix, src_points, err = core.face_points(src_img)
+  File "/home/junjie/Code/python_REST/rest/model/recognizer.py", line 49, in face_points
+    faces = json.loads(s1)[0]['faces']
+IndexError: list index out of range
+2019-04-19 21:53:43 INFO:werkzeug:122: 127.0.0.1 - - [19/Apr/2019 21:53:43] "[1m[35mPOST /rest/face_fusion HTTP/1.1[0m" 500 -
+2019-04-20 13:02:40 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-20 13:02:55 ERROR:file:322: FUSION ERROR:recognize_sentence request:{'user_Id': 'qk125463', 'inputImage': '/home/junjie/Code/python_REST/images/2282038-13d70b5c2508afda.jpg'}, error:list index out of range
+Traceback (most recent call last):
+  File "/home/junjie/Code/python_REST/rest/api/sentence_api.py", line 307, in face_fusion
+    mat_multiple=0.95)
+  File "/home/junjie/Code/python_REST/rest/model/morpher.py", line 177, in face_merge
+    src_matrix, src_points, err = core.face_points(src_img)
+  File "/home/junjie/Code/python_REST/rest/model/recognizer.py", line 49, in face_points
+    faces = json.loads(s1)[0]['faces']
+IndexError: list index out of range
+2019-04-20 13:02:55 INFO:werkzeug:122: 127.0.0.1 - - [20/Apr/2019 13:02:55] "[1m[35mPOST /rest/face_fusion HTTP/1.1[0m" 500 -
+2019-04-20 13:09:31 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-20 13:10:27 ERROR:file:322: FUSION ERROR:recognize_sentence request:{'user_Id': 'qk125463', 'inputImage': '/home/junjie/Code/python_REST/images/2282038-13d70b5c2508afda.jpg'}, error:the JSON object must be str, bytes or bytearray, not 'list'
+Traceback (most recent call last):
+  File "/home/junjie/Code/python_REST/rest/api/sentence_api.py", line 307, in face_fusion
+    mat_multiple=0.95)
+  File "/home/junjie/Code/python_REST/rest/model/morpher.py", line 177, in face_merge
+    src_matrix, src_points, err = core.face_points(src_img)
+  File "/home/junjie/Code/python_REST/rest/model/recognizer.py", line 48, in face_points
+    faces = json.loads(points)['faces']
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/json/__init__.py", line 348, in loads
+    'not {!r}'.format(s.__class__.__name__))
+TypeError: the JSON object must be str, bytes or bytearray, not 'list'
+2019-04-20 13:10:27 INFO:werkzeug:122: 127.0.0.1 - - [20/Apr/2019 13:10:27] "[1m[35mPOST /rest/face_fusion HTTP/1.1[0m" 500 -
+2019-04-20 13:12:00 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-20 13:12:25 ERROR:file:322: FUSION ERROR:recognize_sentence request:{'user_Id': 'qk125463', 'inputImage': '/home/junjie/Code/python_REST/images/2282038-13d70b5c2508afda.jpg'}, error:the JSON object must be str, bytes or bytearray, not 'list'
+Traceback (most recent call last):
+  File "/home/junjie/Code/python_REST/rest/api/sentence_api.py", line 307, in face_fusion
+    mat_multiple=0.95)
+  File "/home/junjie/Code/python_REST/rest/model/morpher.py", line 177, in face_merge
+    src_matrix, src_points, err = core.face_points(src_img)
+  File "/home/junjie/Code/python_REST/rest/model/recognizer.py", line 48, in face_points
+    faces = json.loads(points)['faces']
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/json/__init__.py", line 348, in loads
+    'not {!r}'.format(s.__class__.__name__))
+TypeError: the JSON object must be str, bytes or bytearray, not 'list'
+2019-04-20 13:12:25 INFO:werkzeug:122: 127.0.0.1 - - [20/Apr/2019 13:12:25] "[1m[35mPOST /rest/face_fusion HTTP/1.1[0m" 500 -
+2019-04-20 13:18:26 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-20 13:18:47 ERROR:file:322: FUSION ERROR:recognize_sentence request:{'user_Id': 'qk125463', 'inputImage': '/home/junjie/Code/python_REST/images/2282038-13d70b5c2508afda.jpg'}, error:the JSON object must be str, bytes or bytearray, not 'list'
+Traceback (most recent call last):
+  File "/home/junjie/Code/python_REST/rest/api/sentence_api.py", line 307, in face_fusion
+    mat_multiple=0.95)
+  File "/home/junjie/Code/python_REST/rest/model/morpher.py", line 177, in face_merge
+    src_matrix, src_points, err = core.face_points(src_img)
+  File "/home/junjie/Code/python_REST/rest/model/recognizer.py", line 52, in face_points
+    faces = json.loads(points)['faces']
+  File "/home/junjie/anaconda3/envs/web/lib/python3.6/json/__init__.py", line 348, in loads
+    'not {!r}'.format(s.__class__.__name__))
+TypeError: the JSON object must be str, bytes or bytearray, not 'list'
+2019-04-20 13:18:47 INFO:werkzeug:122: 127.0.0.1 - - [20/Apr/2019 13:18:47] "[1m[35mPOST /rest/face_fusion HTTP/1.1[0m" 500 -
+2019-04-20 13:22:07 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-20 13:22:32 INFO:file:317: FUSION PREDICT:request:{'user_Id': 'qk125463', 'inputImage': '/home/junjie/Code/python_REST/images/2282038-13d70b5c2508afda.jpg'},predict:{'user_Id': 'qk125463', 'time': datetime.datetime(2019, 4, 20, 13, 22, 32, 687163), 'type': 'fusion', 'outputImage': '/home/junjie/Code/python_REST/images/2282038-13d70b5c2508afda_fusion..jpg'}
+2019-04-20 13:22:32 INFO:file:25: API-<Request 'http://localhost:9420/rest/face_fusion' [POST]> request time is 10854 ms
+2019-04-20 13:22:32 INFO:werkzeug:122: 127.0.0.1 - - [20/Apr/2019 13:22:32] "[37mPOST /rest/face_fusion HTTP/1.1[0m" 200 -
+2019-04-20 13:24:39 INFO:werkzeug:122:  * Running on http://0.0.0.0:9420/ (Press CTRL+C to quit)
+2019-04-20 13:24:54 INFO:file:317: FUSION PREDICT:request:{'user_Id': 'qk125463', 'inputImage': '/home/junjie/Code/python_REST/images/2282038-13d70b5c2508afda.jpg'},predict:{'user_Id': 'qk125463', 'time': datetime.datetime(2019, 4, 20, 13, 24, 54, 263312), 'type': 'fusion', 'outputImage': '/home/junjie/Code/python_REST/images/2282038-13d70b5c2508afda_fusion.jpg'}
+2019-04-20 13:24:54 INFO:file:25: API-<Request 'http://localhost:9420/rest/face_fusion' [POST]> request time is 7177 ms
+2019-04-20 13:24:54 INFO:werkzeug:122: 127.0.0.1 - - [20/Apr/2019 13:24:54] "[37mPOST /rest/face_fusion HTTP/1.1[0m" 200 -

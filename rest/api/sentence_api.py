@@ -17,6 +17,7 @@ import logging
 import datetime
 import tensorflow as tf
 import align
+import collections
 from flask import request
 
 from flask import Blueprint
@@ -130,7 +131,7 @@ def init_compare_image():
         return None, 500
 
 
-@route(bp, 'checkUser' , methods = ['Post'])
+@route(bp, '/checkUser' , methods = ['Post'])
 def checkUser():
     '''
     query:{
@@ -147,16 +148,56 @@ def checkUser():
     try:
         result = {}
         user = User.query.filter(User.username == username).first()
-        if user is None or user.name.strip == '':
+        if user is None or user.username.strip == '':
             result['status'] = False
+            db.session.add(User(username = username))
+            db.session.commit()
         else:
             result['status'] = True
+
             
         logger.info('checkUser:request:{},return:{}'.format(request.json, result))
         return result, 200
     except Exception as e:
         logger.error('ERROR:checkUser request:{}, error:{}'.format(request.json, e), exc_info=True)
         return None, 500
+
+@route(bp, '/user/getHistory' , methods = ['Post'])
+def getHistory():
+    '''
+    query:{
+        'openId', string
+    }
+    :return:{
+        history
+    }
+    '''
+    if not request.is_json:
+        logger.error('Request not contains any json data.')
+        return {'error': 'Request not contains any json data.'}, 405
+    username = request.get_json()['openId']
+    try:
+        result = {}
+        logs = Log.query.filter(Log.username == username).all()
+
+        list_logs = []
+        for log in logs:
+            d = collections.OrderedDict()
+            d['user_Id'] = log.username
+            d['history_id'] = log.id
+            d['type'] = log.type
+            d['datetime'] = log.datetime
+            d['outputImage'] = log.imageres
+            list_logs.append(d)
+
+
+        result['history'] = list_logs
+        logger.info('checkUser:request:{},return:{}'.format(request.json, result))
+        return result, 200
+    except Exception as e:
+        logger.error('ERROR:checkUser request:{}, error:{}'.format(request.json, e), exc_info=True)
+        return None, 500
+
 
 @route(bp, '/detect', methods=['POST'])
 def detect():

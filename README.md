@@ -1,11 +1,33 @@
 # Face_fusion_rest
 
+### Installation
+1. Get the code. We will call the cloned directory as `$FACE_FUSION_ROOT`.
+  ```Shell
+  git clone https://github.com/fregulationn/python-REST.git
+  ```
+
+2. Build the code. Please follow [FaceNet](http://caffe.berkeleyvision.org/installation.html) to install all necessary packages and build it.We will call FaceNet cloned directory as `$FACENET_ROOT`.
+  ```Shell
+  cd $FACE_FUSION_ROOT
+  pip install -r requirements.txt
+  export PATH=$PATH:FACENET_ROOT
+  ```
+
+
+## Pre-trained models
+| Model name      | LFW accuracy | Training dataset | Architecture |
+|-----------------|--------------|------------------|-------------|
+| [20180408-102900](https://drive.google.com/open?id=1R77HmFADxe87GmoLwzfgMu_HY0IhcyBz) | 0.9905        | CASIA-WebFace    | [Inception ResNet v1](https://github.com/davidsandberg/facenet/blob/master/src/models/inception_resnet_v1.py) |
+| [20180402-114759](https://drive.google.com/open?id=1EXPBSXwTaqrSC0OhUdXNmKSh9qJUQ55-) | 0.9965        | VGGFace2      | [Inception ResNet v1](https://github.com/davidsandberg/facenet/blob/master/src/models/inception_resnet_v1.py) |
+
+
+## Interface
 #### 1.根据OpenID检查用户是否存在, 不存在则添加新用户
     URL: checkUser
     Type: POST
     body：   
     {
-      user_Id:'qk125463'
+      openId:'qk125463'
     }
 
     :return 
@@ -69,7 +91,7 @@
     }
 
 
-#### 5.保存
+#### 5.保存(TODO)
     URL: save
     Type: POST
     body：   
@@ -86,11 +108,16 @@
 
 
 #### 6.获取历史数据
-    URL: user/getHistory?openId=qk125463
-    Type: GET
+    URL: user/getHistory
+    Type: POST
+    body：   
+    {
+      openId:'qk125463'
+    }
     返回值：
 
     { 
+      history：
       [
         {
           user_Id:'qk125463',
@@ -110,7 +137,7 @@
     }
 
 
-####数据库表
+## Dataset
 
     1.User 
       id 
@@ -132,5 +159,5 @@
 
 
   
-#### Detect && Recognize 
+## Detect && Recognize 
 检测和识别使用的框架来自FaceNet，[出处](https://github.com/davidsandberg/facenet)，检测所使用的方法为MTCNN，识别为FaceNet，详情见出处
