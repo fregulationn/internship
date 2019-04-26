@@ -1,6 +1,6 @@
 # Face_fusion_rest
 
-### Installation
+## Installation
 1. Get the code. We will call the cloned directory as `$FACE_FUSION_ROOT`.
   ```Shell
   git clone https://github.com/fregulationn/python-REST.git
